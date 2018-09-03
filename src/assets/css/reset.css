@@ -343,3 +343,7 @@ template {
 [hidden] {
   display: none;
 }
+
+ul, li {
+  list-style-type: none;
+}

@@ -7,7 +7,7 @@
       <input type="text" class="search" placeholder="输入城市/景点/游玩主题">
     </div>
     <div class="city">
-      <span>city</span>
+      <span>广州</span>
       <i class="icon-triangle-down"></i>
     </div>
   </div>
@@ -40,7 +40,7 @@ export default {
       background-color: #fff
       width: 100%
       line-height: 100%
-      height: .64rem
+      height: .6rem
       margin: 0 .12rem
       padding-left: .12rem
       box-sizing: border-box
@@ -50,5 +50,5 @@ export default {
   .city
     flex: 0 0 1.24rem
     text-align: center
-    font-size: .32rem
+    font-size: .24rem
 </style>
