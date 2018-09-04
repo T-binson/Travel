@@ -1,13 +1,13 @@
 <template>
   <div>
-    <v-header></v-header>
-    <v-slide></v-slide>
-    <v-menu></v-menu>
+    <v-header :city='city'></v-header>
+    <v-slide :banner="banner"></v-slide>
+    <v-menu :menu='menu'></v-menu>
     <gap></gap>
-    <hot></hot>
+    <hot :hotList='hotList'></hot>
     <gap></gap>
-    <recommend></recommend>
-    <weekend></weekend>
+    <recommend :products='products'></recommend>
+    <weekend :activities='activities'></weekend>
   </div>
 </template>
 
@@ -19,11 +19,20 @@ import Recommend from './recommend'
 import Weekend from './weekend'
 import Hot from './hot'
 import Gap from './gap'
+import axios from 'axios'
+
+const ERR_OK = 0
 
 export default {
   name: 'Home',
   data () {
     return {
+      city: '',
+      banner: [],
+      products: [],
+      menu: [],
+      activities: [],
+      hotList: []
     }
   },
   components: {
@@ -34,6 +43,25 @@ export default {
     Weekend,
     Hot,
     Gap
+  },
+  mounted () {
+    this._getInfo()
+  },
+  methods: {
+    _getInfo () {
+      axios.get('/api/index.json').then(this.normalize)
+    },
+    normalize (res) {
+      if (res.data.code === ERR_OK && res.data.data) {
+        let data = res.data.data
+        this.city = data.city
+        this.banner = data.banner
+        this.products = data.products
+        this.menu = data.menu
+        this.activities = data.activities
+        this.hotList = data.hotList
+      }
+    }
   }
 }
 </script>

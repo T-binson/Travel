@@ -1,5 +1,5 @@
 <template>
-  <div class="activity-wrapper">
+  <div class="activity-wrapper" v-show='activity'>
     <div class="pic">
       <img :src="activity.imgUrl" alt="">
     </div>

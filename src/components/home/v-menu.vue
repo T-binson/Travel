@@ -21,61 +21,7 @@ export default {
   name: 'v-menu',
   props: {
     menu: {
-      type: Array,
-      default () {
-        return [
-          {
-            id: '001',
-            title: '景点门票',
-            iconUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png'
-          },
-          {
-            id: '002',
-            title: '广州必游',
-            iconUrl: 'http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png'
-          },
-          {
-            id: '003',
-            title: '动植物园',
-            iconUrl: 'http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png'
-          },
-          {
-            id: '004',
-            title: '游乐场',
-            iconUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/8246f27355943202.png'
-          },
-          {
-            id: '005',
-            title: '珠江夜游',
-            iconUrl: 'http://img1.qunarzz.com/piao/fusion/1803/89/55083b0f1951f302.png'
-          },
-          {
-            id: '006',
-            title: '夏日玩水',
-            iconUrl: 'http://img1.qunarzz.com/piao/fusion/1803/6a/45f595250c73d102.png'
-          },
-          {
-            id: '007',
-            title: '城市观光',
-            iconUrl: 'http://img1.qunarzz.com/piao/fusion/1803/b6/37560ece9c62b502.png'
-          },
-          {
-            id: '008',
-            title: '网红打卡',
-            iconUrl: 'http://img1.qunarzz.com/piao/fusion/1808/8d/747c9a29b8dba402.png'
-          },
-          {
-            id: '009',
-            title: '玩转长隆',
-            iconUrl: 'http://img1.qunarzz.com/piao/fusion/1803/b1/528a9e80403b8c02.png'
-          },
-          {
-            id: '010',
-            title: '全部玩乐',
-            iconUrl: 'http://img1.qunarzz.com/piao/fusion/1803/80/416c6ab3368d1f02.png'
-          }
-        ]
-      }
+      type: Array
     }
   },
   data () {

@@ -7,7 +7,7 @@
       <input type="text" class="search" placeholder="输入城市/景点/游玩主题">
     </div>
     <div class="city">
-      <span>广州</span>
+      <span>{{city}}</span>
       <i class="icon-triangle-down"></i>
     </div>
   </div>
@@ -15,7 +15,12 @@
 
 <script>
 export default {
-  name: 'v-header'
+  name: 'v-header',
+  props: {
+    city: {
+      type: String
+    }
+  }
 }
 </script>
 

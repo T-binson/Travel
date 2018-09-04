@@ -6,7 +6,7 @@
     </h1>
     <ul class="list">
       <li class="border-bottom">
-        <recommend-one></recommend-one>
+        <recommend-one :products='products'></recommend-one>
       </li>
     </ul>
     <p class="more border-bottom">查看所有产品</p>
@@ -20,6 +20,11 @@ export default {
   name: 'Recommend',
   components: {
     RecommendOne
+  },
+  props: {
+    products: {
+      type: Array
+    }
   }
 }
 </script>
