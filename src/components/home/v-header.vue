@@ -6,7 +6,7 @@
     <div class="input">
       <input type="text" class="search" placeholder="输入城市/景点/游玩主题">
     </div>
-    <div class="city">
+    <div class="city" @click="selectCity">
       <span>{{city}}</span>
       <i class="icon-triangle-down"></i>
     </div>
@@ -19,6 +19,11 @@ export default {
   props: {
     city: {
       type: String
+    }
+  },
+  methods: {
+    selectCity () {
+      this.$router.push('/city')
     }
   }
 }
