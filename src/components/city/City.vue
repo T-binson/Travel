@@ -2,7 +2,7 @@
   <div class="city-wrapper">
     <div class="top">
       <c-header></c-header>
-      <search></search>
+      <search :cities='lists'></search>
     </div>
     <div class="main" ref='main'>
       <div class="main-wrapper">
