@@ -1,6 +1,7 @@
 <template>
   <div>
-    <v-header :city='city'></v-header>
+    <!-- <v-header :city='city'></v-header> -->
+    <v-header></v-header>
     <v-slide :banner="banner"></v-slide>
     <v-menu :menu='menu'></v-menu>
     <gap></gap>
@@ -20,6 +21,7 @@ import Weekend from './weekend'
 import Hot from './hot'
 import Gap from './gap'
 import axios from 'axios'
+import {mapState} from 'vuex'
 
 const ERR_OK = 0
 
@@ -27,12 +29,13 @@ export default {
   name: 'Home',
   data () {
     return {
-      city: '',
+      // city: '',
       banner: [],
       products: [],
       menu: [],
       activities: [],
-      hotList: []
+      hotList: [],
+      lastCity: ''
     }
   },
   components: {
@@ -45,16 +48,26 @@ export default {
     Gap
   },
   mounted () {
+    this.lastCity = this.city
     this._getInfo()
+  },
+  activated () {
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city
+      this._getInfo()
+    }
+  },
+  computed: {
+    ...mapState(['city'])
   },
   methods: {
     _getInfo () {
-      axios.get('/api/index.json').then(this.normalize)
+      axios.get('/api/index.json?city=' + this.city).then(this.normalize)
     },
     normalize (res) {
       if (res.data.code === ERR_OK && res.data.data) {
         let data = res.data.data
-        this.city = data.city
+        // this.city = data.city
         this.banner = data.banner
         this.products = data.products
         this.menu = data.menu

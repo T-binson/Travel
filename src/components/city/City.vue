@@ -10,7 +10,7 @@
           <c-title :text='t1'></c-title>
           <ul class="cur-wrapper">
             <li class="cur">
-              <span>城市</span>
+              <span>{{this.currentCity}}</span>
             </li>
           </ul>
         </div>
@@ -38,6 +38,7 @@ import CList from './c-list'
 import Alphabet from './alphabet'
 import BScroll from 'better-scroll'
 import axios from 'axios'
+import {mapState} from 'vuex'
 
 const ERR_OK = 0
 
@@ -53,13 +54,18 @@ export default {
   },
   data () {
     return {
-      t1: '当前位置',
+      t1: '当前城市',
       t2: '热门城市',
       hotCities: [],
       lists: [],
       alphabet: [],
       letter: ''
     }
+  },
+  computed: {
+    ...mapState({
+      currentCity: 'city'
+    })
   },
   methods: {
     selectItem (item) {

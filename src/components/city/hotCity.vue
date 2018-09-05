@@ -2,7 +2,10 @@
   <div class="hotcity-wrapper">
     <slot></slot>
     <ul class="cities">
-      <li class="item" v-for="city in hotCities" :key="city.id"><span class="city">{{city.name}}</span></li>
+      <li class="item"
+          v-for="city in hotCities"
+          :key="city.id"
+          @click='selectCity(city.name)'><span class="city">{{city.name}}</span></li>
     </ul>
   </div>
 </template>
@@ -12,6 +15,12 @@ export default {
   props: {
     hotCities: {
       type: Array
+    }
+  },
+  methods: {
+    selectCity (city) {
+      this.$store.dispatch('changeCity', city)
+      this.$router.push('/')
     }
   }
 }

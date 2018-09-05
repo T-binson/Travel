@@ -7,24 +7,30 @@
       <input type="text" class="search" placeholder="输入城市/景点/游玩主题">
     </div>
     <div class="city" @click="selectCity">
-      <span>{{city}}</span>
+      <!-- <span>{{this.$store.state.city}}</span> -->
+      <span>{{this.city}}</span>
       <i class="icon-triangle-down"></i>
     </div>
   </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
   name: 'v-header',
-  props: {
+  /* props: {
     city: {
       type: String
     }
-  },
+  }, */
   methods: {
     selectCity () {
       this.$router.push('/city')
     }
+  },
+  computed: {
+    ...mapState(['city'])
   }
 }
 </script>
@@ -58,7 +64,10 @@ export default {
       outline: none
       border: none
   .city
-    flex: 0 0 1.24rem
+    min-width: 1.04rem
+    padding: 0 .1rem
     text-align: center
     font-size: .24rem
+    span
+      padding: 0 .1rem
 </style>
