@@ -97,7 +97,13 @@ export default {
     }
   },
   mounted () {
-    this.scroll = new BScroll('.main')
+    this.$nextTick(() => {
+      if (!this.scroll) {
+        this.scroll = new BScroll('.main')
+      } else {
+        this.scroll.refresh()
+      }
+    })
     this._getCity()
   }
 }

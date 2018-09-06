@@ -28,6 +28,11 @@ body {
   font-family: Arial,"Microsoft Yahei","Helvetica Neue",Helvetica,sans-serif;
 }
 
+
+body, ul, ol, dl, dd, h1, h2, h3, h4, h5, h6, figure, form, fieldset, legend, input, textarea, button, p, blockquote, th, td, pre, xmp {
+    margin:0;
+    padding:0
+}
 /**
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.

@@ -1,5 +1,5 @@
 <template>
-  <div class="gallery-wrapper" @click='closeGallery'>
+  <div class="gallery-wrapper" @click.stop='closeGallery'>
     <div class="container">
       <swiper :options="swiperOption">
         <!-- slides -->

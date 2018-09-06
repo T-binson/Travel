@@ -1,51 +1,156 @@
-<template>
+  <template>
   <div class="details-wrapper">
-    <banner @openGallery='showGallery'></banner>
-    <gallery :album='album'
-              v-show='showFlag'
-              @closeGallery='showGallery'></gallery>
+    <banner></banner>
+    <div class="baseInfo">
+      <div class="message-wrapper">
+        <div class="left border-right">
+          <p class="top"><span class="score">5.0</span>分<span class="desc">超赞</span></p>
+          <p class="bot"><span class="comment">76377条评论</span><span class="tips">25条攻略</span></p>
+          <i class="icon-arrow">xx</i>
+        </div>
+        <div class="right">
+          <p class="title">景点简介</p>
+          <p class="text">开放时间、贴士</p>
+          <i class="icon-arrow">xx</i>
+        </div>
+      </div>
+      <div class="address-wrapper border-top">
+        <i class="icon-bubble">xx</i>
+        <span class="address">广东省广州市番禺区迎宾路长隆旅游度假村旁</span>
+        <i class="icon-arrow">x</i>
+      </div>
+    </div>
+    <gap></gap>
+    <div class="bulletin">
+      <i class="icon-horn">xx</i>
+      <span class="content">野生动物世界内缆车及小火车均可免费乘坐</span>
+      <i class="icon-arrow">xx</i>
+    </div>
+    <gap></gap>
+    <recommend></recommend>
+    <gap></gap>
+    <ticket></ticket>
+    <recommend></recommend>
   </div>
 </template>
 
 <script>
 import Banner from './banner'
-import Gallery from './gallery'
+import Gap from '../home/gap'
+import Recommend from './recommend'
+import Ticket from './ticket'
 
 export default {
   name: 'Details',
   components: {
     Banner,
-    Gallery
+    Gap,
+    Recommend,
+    Ticket
   },
   data () {
     return {
-      showFlag: false,
-      album: [
-        {
-          id: '001',
-          url: 'https://img1.qunarzz.com/sight/p0/1412/66/cd09ac9548221dcc4cef8dde5913c780.water.jpg_r_800x800_bea4d4a4.jpg'
-        }, {
-          id: '002',
-          url: 'https://img1.qunarzz.com/sight/p0/1412/d0/fb78162dda1235ed76bed4c0c637c187.water.jpg_r_800x800_7ba38130.jpg'
-        }, {
-          id: '003',
-          url: 'https://img1.qunarzz.com/sight/p0/1412/3a/8f863cdaa5e4a44e54e507b343525557.water.jpg_r_800x800_8ac6b9d4.jpg'
-        }, {
-          id: '004',
-          url: 'https://img1.qunarzz.com/sight/p0/1412/10/fb5c4d61b1603d4f1269cb6213354a84.water.jpg_r_800x800_92a50675.jpg'
-        }, {
-          id: '005',
-          url: 'http://img1.qunarzz.com/sight/p0/1412/c7/0706ef15d1e5e325b83ea3c90170001a.water.jpg_r_800x800_4bba3c1e.jpg'
-        }
-      ]
     }
   },
   methods: {
-    showGallery () {
-      this.showFlag = !this.showFlag
-    }
   }
 }
 </script>
 
-<style scoped lang="stylus" rel="stylesheet/stylus"></style>
+<style scoped lang="stylus" rel="stylesheet/stylus">
+  .details-wrapper
+    .baseInfo
+      padding: .1rem .2rem 0 .2rem
+      margin-bottom: .1rem
+      .message-wrapper
+        display: flex
+        padding: .1rem 0 .2rem
+        .left
+          flex: 1
+          position: relative
+          .top
+            font-size: .28rem
+            line-height: .48rem
+            color: #ff8300
+            .score
+              font-size: .44rem
+              line-height: .44rem
+            .desc
+              margin-left: .2rem
+          .bot
+            color: #9e9e9e
+            line-height: .32rem
+            font-size: .24rem
+            .comment
+              margin-right: .2rem
+          .icon-arrow
+            position: absolute
+            right: .2rem
+            top: .3rem
+            font-size: .24rem
+            color: #9e9e9e
+        .right
+          flex: 1
+          position: relative
+          .title
+            font-size: .28rem
+            color: #212121
+            line-height: .48rem
+            padding-left: .3rem
+          .text
+            color: #9e9e9e
+            font-size: .24rem
+            padding-left: .3rem
+          .icon-arrow
+            position: absolute
+            right: .2rem
+            top: .3rem
+            font-size: .24rem
+            color: #9e9e9e
+      .address-wrapper
+        padding: .2rem 0
+        line-height: .36rem
+        color: #212121
+        font-size: 0
+        .icon-bubble
+          display: inline-block
+          font-size: .24rem
+          margin-right: .2rem
+          vertical-align: top
+        .address
+          font-size: .28rem
+          padding-right: .56rem
+          display: inline-block
+          overflow: hidden
+          white-space: nowrap
+          text-overflow: ellipsis
+          max-width: 6rem
+        .icon-arrow
+          display: inline-block
+          font-size: .24rem
+          vertical-align: top
+    .bulletin
+      height: .88rem
+      padding-left: .23rem
+      background-color: #fff5e5
+      color: #ff8300
+      line-height: .88rem
+      font-size: 0
+      .icon-horn
+        display: inline-block
+        vertical-align: top
+        margin-right: .2rem
+        font-size: .24rem
+      .content
+        display: inline-block
+        max-width: 6rem
+        padding-right: .6rem
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
+        font-size: .28rem
+      .icon-arrow
+        display: inline-block
+        vertical-align: top
+        font-size: .24rem
+</style>
