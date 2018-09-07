@@ -4,17 +4,17 @@
             v-show="appear"
             :style="opacityStyle"
             @click.stop>
-      <i class="icon-back"></i>
+      <i class="icon-back">back</i>
       <h1>长隆野生动物世界</h1>
     </header>
     <div class="pic">
-      <img src="https://img1.qunarzz.com/sight/p0/1709/41/411f234d79457081a3.img.jpg_600x330_b5e86902.jpg" alt="">
+      <img :src="banner.poster" alt="">
     </div>
     <div class="info">
-      <div class="title">长隆野生动物世界(AAAAA景区)</div>
-      <div class="total"><span class="icon">xx</span>102</div>
+      <div class="title">{{banner.title}}</div>
+      <div class="total"><span class="icon-thumbnail"></span>{{thumbnails.amount}}</div>
     </div>
-    <gallery :album='album'
+    <gallery :album='thumbnails.album'
               v-show='showFlag'
               @closeGallery='showGallery'></gallery>
     <div class="back" @click.stop='back' v-show="!appear">back</div>
@@ -33,24 +33,13 @@ export default {
       opacityStyle: {
         opacity: 0
       },
-      album: [
-        {
-          id: '001',
-          url: 'https://img1.qunarzz.com/sight/p0/1412/66/cd09ac9548221dcc4cef8dde5913c780.water.jpg_r_800x800_bea4d4a4.jpg'
-        }, {
-          id: '002',
-          url: 'https://img1.qunarzz.com/sight/p0/1412/d0/fb78162dda1235ed76bed4c0c637c187.water.jpg_r_800x800_7ba38130.jpg'
-        }, {
-          id: '003',
-          url: 'https://img1.qunarzz.com/sight/p0/1412/3a/8f863cdaa5e4a44e54e507b343525557.water.jpg_r_800x800_8ac6b9d4.jpg'
-        }, {
-          id: '004',
-          url: 'https://img1.qunarzz.com/sight/p0/1412/10/fb5c4d61b1603d4f1269cb6213354a84.water.jpg_r_800x800_92a50675.jpg'
-        }, {
-          id: '005',
-          url: 'http://img1.qunarzz.com/sight/p0/1412/c7/0706ef15d1e5e325b83ea3c90170001a.water.jpg_r_800x800_4bba3c1e.jpg'
-        }
-      ]
+      thumbnails: {}
+    }
+  },
+  props: {
+    banner: {
+      type: Object,
+      require: true
     }
   },
   components: {
@@ -67,17 +56,20 @@ export default {
       const top = document.documentElement.scrollTop
       if (top > 40) {
         this.appear = true
-        if (top <= 200) {
-          this.opacityStyle.opacity = top / 200
-        }
+        const opacity = top / 200
+        this.opacityStyle.opacity = opacity > 1 ? 1 : opacity
       } else {
         this.appear = false
       }
     }
   },
-  activated () {
+  updated () {
+    this.thumbnails = this.banner.thumbnails
     window.addEventListener('scroll', this._showHeader)
   },
+  /* activated () {
+    window.addEventListener('scroll', this._showHeader)
+  }, */
   deactivated () {
     window.removeEventListener('scroll', this._showHeader)
   }
@@ -150,8 +142,14 @@ export default {
         color: #fff
         line-height: .4rem
         text-align: center
-        .icon
+        .icon-thumbnail
           margin-right: .1rem
+          background: url(/static/img/detail.ee758fd.png) 0 -2.2rem no-repeat
+          background-size: 0.4rem 3rem
+          display: inline-block
+          width: .3rem
+          height: .3rem
+          vertical-align: top
     .back
       position: absolute
       left: .1rem

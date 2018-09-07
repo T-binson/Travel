@@ -27,6 +27,8 @@ export default {
     banner: {
       type: Array
     }
+  },
+  activated () {
   }
 }
 </script>

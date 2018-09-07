@@ -1,40 +1,18 @@
 <template>
   <div class="recommend-wrapper">
     <div class="title">
-      <i class="icon-like">xx</i>
+      <i class="icon-like"></i>
       <span class="text">去哪儿推荐</span>
     </div>
     <ul class="list">
-      <li class="ticket-info border-top">
+      <li class="ticket-info border-top" v-for="(recommend, index) in recommendList" :key="index">
         <div class="desc">
-          <h6 class="ticket-title">【当天可订】 广州长隆野生动物世界平日成人票</h6>
-          <div class="dateTime">16:00前随买随用</div>
-          <div class="notice"><span class="tag">条件退</span></div>
+          <h6 class="ticket-title">{{recommend.desc}}</h6>
+          <div class="dateTime">{{recommend.dateTime}}</div>
+          <div class="notice"><span class="tag" v-for="(tag, index) in recommend.tags" :key="index">{{tag}}</span></div>
         </div>
         <div class="price">
-          <div class="money">¥<span class="num">295</span></div>
-          <div class="book-button">预订</div>
-        </div>
-      </li>
-      <li class="ticket-info border-top">
-        <div class="desc">
-          <h6 class="ticket-title">野生动物世界平日家庭票2大1小或1老【惠民月促销】</h6>
-          <div class="dateTime">23:45前可订明日</div>
-          <div class="notice"><span class="tag">自营</span><span class="tag">不可退</span></div>
-        </div>
-        <div class="price">
-          <div class="money">¥<span class="num">659</span></div>
-          <div class="book-button">预订</div>
-        </div>
-      </li>
-      <li class="ticket-info border-top">
-        <div class="desc">
-          <h6 class="ticket-title">【当天随订随用】长隆动物世界成人票-假日</h6>
-          <div class="dateTime">可订9月8日</div>
-          <div class="notice"><span class="tag">条件退</span></div>
-        </div>
-        <div class="price">
-          <div class="money">¥<span class="num">339</span></div>
+          <div class="money">¥<span class="num">{{recommend.price}}</span></div>
           <div class="book-button">预订</div>
         </div>
       </li>
@@ -44,7 +22,13 @@
 
 <script>
 export default {
-  name: 'recommend'
+  name: 'recommend',
+  props: {
+    recommendList: {
+      type: Array,
+      require: true
+    }
+  }
 }
 </script>
 
@@ -58,8 +42,12 @@ export default {
       font-size: 0
       .icon-like
         font-size: .24rem
-        margin-right: .2rem
-        vertical-align: top
+        margin-right: .1rem
+        background: url(/static/img/detail.ee758fd.png) 0 -2.6rem no-repeat
+        background-size: 0.4rem 3rem
+        display: inline-block
+        width: .4rem
+        height: .4rem
       .text
         font-size: .32rem
         color: #333

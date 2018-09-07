@@ -1,11 +1,11 @@
   <template>
   <div class="details-wrapper">
-    <banner></banner>
+    <banner :banner="banner"></banner>
     <div class="baseInfo">
       <div class="message-wrapper">
         <div class="left border-right">
-          <p class="top"><span class="score">5.0</span>分<span class="desc">超赞</span></p>
-          <p class="bot"><span class="comment">76377条评论</span><span class="tips">25条攻略</span></p>
+          <p class="top"><span class="score">{{baseInfo.score}}</span>分<span class="desc">{{baseInfo.keyword}}</span></p>
+          <p class="bot"><span class="comment">{{baseInfo.rate}}条评论</span><span class="tips">{{baseInfo.tips}}条攻略</span></p>
           <i class="icon-arrow">xx</i>
         </div>
         <div class="right">
@@ -15,22 +15,21 @@
         </div>
       </div>
       <div class="address-wrapper border-top">
-        <i class="icon-bubble">xx</i>
-        <span class="address">广东省广州市番禺区迎宾路长隆旅游度假村旁</span>
+        <i class="icon-bubble"></i>
+        <span class="address">{{baseInfo.address}}</span>
         <i class="icon-arrow">x</i>
       </div>
     </div>
     <gap></gap>
     <div class="bulletin">
       <i class="icon-horn">xx</i>
-      <span class="content">野生动物世界内缆车及小火车均可免费乘坐</span>
+      <span class="content">{{bulletin}}</span>
       <i class="icon-arrow">xx</i>
     </div>
     <gap></gap>
-    <recommend></recommend>
+    <recommend :recommendList="recommendList"></recommend>
     <gap></gap>
-    <ticket></ticket>
-    <recommend></recommend>
+    <ticket :tickets="tickets"></ticket>
   </div>
 </template>
 
@@ -39,6 +38,9 @@ import Banner from './banner'
 import Gap from '../home/gap'
 import Recommend from './recommend'
 import Ticket from './ticket'
+import axios from 'axios'
+
+const ERR_OK = 0
 
 export default {
   name: 'Details',
@@ -50,9 +52,34 @@ export default {
   },
   data () {
     return {
+      recommendList: [],
+      banner: {},
+      tickets: [],
+      baseInfo: {},
+      bulletin: ''
     }
   },
   methods: {
+    _getData () {
+      axios.get('/api/details.json', {
+        params: {
+          id: this.$route.params.id
+        }
+      }).then(this._normalize)
+    },
+    _normalize (res) {
+      if (res.data.code === ERR_OK && res.data.data) {
+        const data = res.data.data
+        this.banner = data.banner
+        this.recommendList = data.recommend
+        this.tickets = data.tickets
+        this.baseInfo = data.baseInfo
+        this.bulletin = data.bulletin
+      }
+    }
+  },
+  mounted () {
+    this._getData()
   }
 }
 </script>
@@ -116,6 +143,10 @@ export default {
           display: inline-block
           font-size: .24rem
           margin-right: .2rem
+          background: url(/static/img/detail.ee758fd.png) 0 -1.8rem no-repeat
+          background-size: 0.4rem 3rem
+          width: .3rem
+          height: .36rem
           vertical-align: top
         .address
           font-size: .28rem

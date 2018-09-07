@@ -1,10 +1,12 @@
 <template>
   <div class="ticket-wrapper">
-    <header class="tab">
+    <header class="tab border-bottom">
       <div class="btn active">门票</div>
       <div class="btn">一日游</div>
     </header>
-    <ticket-item></ticket-item>
+    <!-- <template v-for="(ticket, index) in tickets"> -->
+      <ticket-item :ticket="ticket" v-for="(ticket, index) in tickets" :key="index"></ticket-item>
+    <!-- </template> -->
   </div>
 </template>
 
@@ -15,6 +17,12 @@ export default {
   name: 'ticket',
   components: {
     TicketItem
+  },
+  props: {
+    tickets: {
+      type: Array,
+      require: true
+    }
   }
 }
 </script>
