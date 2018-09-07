@@ -14,15 +14,18 @@
       <div class="title">{{banner.title}}</div>
       <div class="total"><span class="icon-thumbnail"></span>{{thumbnails.amount}}</div>
     </div>
-    <gallery :album='thumbnails.album'
+    <fade>
+      <gallery :album='thumbnails.album'
               v-show='showFlag'
               @closeGallery='showGallery'></gallery>
+    </fade>
     <div class="back" @click.stop='back' v-show="!appear">back</div>
   </div>
 </template>
 
 <script>
 import Gallery from './gallery'
+import Fade from '../animation/fade'
 
 export default {
   name: 'banner',
@@ -43,7 +46,8 @@ export default {
     }
   },
   components: {
-    Gallery
+    Gallery,
+    Fade
   },
   methods: {
     showGallery () {
